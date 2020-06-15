@@ -1,5 +1,5 @@
 ## Atlas
-A new Flutter project with Expressjs Backend.
+A Flutter project with Node.js Backend.
 Flutter frontend follows Provider-Listener Design Pattern
 
 For more information: https://pub.dev/packages/provider
