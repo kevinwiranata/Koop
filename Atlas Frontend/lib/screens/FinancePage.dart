@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../widgets/TabBar.dart' as TabBars;
 
-class HomePage extends StatelessWidget {
-  static const routeName = '/';
+class FinancePage extends StatelessWidget {
+  static const routeName = '/finance';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: Text('Finance Page'),
       ),
       bottomNavigationBar: TabBars.TabBar(),
       body: Container(),
