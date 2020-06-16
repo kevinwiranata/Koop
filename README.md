@@ -10,7 +10,7 @@ https://medium.com/flutter-community/flutter-statemanagement-with-provider-ee251
 Clone the project 
 ```
 git clone https://github.com/kevinwiranata/Atlas
-cd project-x
+cd Atlas
 ```
 
 ### Run the App on iOS/Android Emulator
@@ -22,7 +22,7 @@ Windows: https://flutter.dev/docs/get-started/install/windows
 
 Linux: https://flutter.dev/docs/get-started/install/linux
 
-In the project_x directory (flutter), click Run -> Run Without Debugging in VSCode (or hit control + F5)
+In the Atlas directory (flutter), click Run -> Run Without Debugging in VSCode (or hit control + F5)
 
 Use the terminal to change directory to the Backend directory, install node depencdencies and start the server.
 ```
