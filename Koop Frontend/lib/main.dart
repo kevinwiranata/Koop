@@ -31,11 +31,11 @@ class MyApp extends StatelessWidget {
         ),
         home: Consumer<TabProvider>(
             builder: (_, tabState, child) => screens[tabState.currentIndex]),
-        // routes: {  //routes are not used as of now, just incase we need them
-        //   SearchPage.routeName: (ctx) => SearchPage(),
-        //   FinancePage.routeName: (ctx) => FinancePage(),
-        //   ProfilePage.routeName: (ctx) => ProfilePage(),
-        // },
+        routes: {  //routes are not used as of now, just incase we need them
+          SearchPage.routeName: (ctx) => SearchPage(),
+          FinancePage.routeName: (ctx) => FinancePage(),
+          ProfilePage.routeName: (ctx) => ProfilePage(),
+        },
       ),
     );
   }

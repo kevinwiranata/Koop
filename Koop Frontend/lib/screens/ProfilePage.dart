@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
+import '../widgets/Drawer.dart';
 import '../widgets/TabBar.dart' as TabBars;
 
 class ProfilePage extends StatelessWidget {
@@ -10,7 +12,8 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Profile Page'),
       ),
-      bottomNavigationBar: TabBars.TabBar(),
+      bottomNavigationBar: Platform.isIOS ? TabBars.TabBar() : null,
+      drawer: Platform.isAndroid ? AndroidDrawer() : null,
       body: Container(),
     );
   }

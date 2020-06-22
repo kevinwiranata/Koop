@@ -23,19 +23,19 @@ class _TabBarState extends State<TabBar> {
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.home, color: Colors.grey),
-          activeIcon: Icon(Icons.home, color: Colors.black),
+          activeIcon: Icon(Icons.home, color: Colors.blueGrey),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search, color: Colors.grey),
-          activeIcon: Icon(Icons.search, color: Colors.black),
+          activeIcon: Icon(Icons.search, color: Colors.blueGrey),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.attach_money, color: Colors.grey),
-          activeIcon: Icon(Icons.attach_money, color: Colors.black),
+          icon: Icon(Icons.payment, color: Colors.grey),
+          activeIcon: Icon(Icons.payment, color: Colors.blueGrey),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person, color: Colors.grey),
-          activeIcon: Icon(Icons.person, color: Colors.black),
+          activeIcon: Icon(Icons.person, color: Colors.blueGrey),
         ),
       ],
       onTap: (index) {
