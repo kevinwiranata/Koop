@@ -26,7 +26,7 @@ dependencies:
   provider: ^4.1.2
   intl: ^0.16.1
   http: ^0.12.1
-
+  fab_circular_menu: ^1.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
