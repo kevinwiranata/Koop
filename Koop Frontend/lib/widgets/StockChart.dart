@@ -21,7 +21,6 @@ class StockChart extends StatelessWidget {
         domainFn: (StockSeries series, _) => series.time,
         measureFn: (StockSeries series, _) => series.price,
       ),
-      // dateTimeFactory: const charts.LocalDateTimeFactory(),
     ];
     return TimeSeriesChart(
       series,
@@ -84,9 +83,10 @@ class CustomCircleSymbolRenderer extends CircleSymbolRenderer {
     textStyle.color = Color.black;
     textStyle.fontSize = 15;
     canvas.drawText(
-        element.TextElement(StockChart.ticker.toStringAsFixed(2),
-            style: textStyle),
-        (bounds.left).round(),
-        (bounds.top - 28).round());
+      element.TextElement(StockChart.ticker.toStringAsFixed(2),
+          style: textStyle),
+      (bounds.left).round(),
+      (bounds.top - 28).round(),
+    );
   }
 }

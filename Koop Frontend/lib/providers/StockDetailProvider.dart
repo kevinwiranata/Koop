@@ -32,13 +32,13 @@ class StockDetailProvider with ChangeNotifier {
 
   void addStockDetails(StockInfo newStockDetail, String stockTicker) {
     stockDetailData.add({stockTicker: newStockDetail});
-    print(stockDetailData);
+    notifyListeners();
   }
 
   void updateStockDetails(StockInfo newStockDetail, String stockTicker) {
     stockDetailData
         .singleWhere((stockDetail) => stockDetail.containsKey(stockTicker))
         .update(stockTicker, (_) => newStockDetail);
+    notifyListeners();
   }
-  notifyListeners();
 }
