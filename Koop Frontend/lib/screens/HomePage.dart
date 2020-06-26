@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'dart:io' show Platform;
 import '../providers/StockProvider.dart';
 import '../widgets/StockList.dart';
+import '../widgets/FabMenu.dart';
 import '../widgets/TabBar.dart' as TabBars;
 
 class HomePage extends StatefulWidget {
@@ -16,12 +18,22 @@ class _HomePageState extends State<HomePage> {
   bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
-    final _stockController = TextEditingController();  //stock ticker
+    final _stockController = TextEditingController(); //stock ticker
     final stockProvider = Provider.of<StockProvider>(context);
     return Scaffold(
+      floatingActionButton: Platform.isAndroid ? FabMenu() : null,
       appBar: AppBar(
-        title: Text('Home Page'),
-      ),
+          centerTitle: true,
+          elevation: 2.0,
+          iconTheme: IconThemeData(color: Theme.of(context).accentColor),
+          title: Text(
+            'Koop',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          backgroundColor: Theme.of(context).primaryColor),
       bottomNavigationBar: TabBars.TabBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,6 +46,7 @@ class _HomePageState extends State<HomePage> {
                 child: TextField(
                   controller: _stockController,
                   decoration: InputDecoration(labelText: 'Stock Ticker'),
+                  keyboardType: TextInputType.text,
                 ),
               ),
               _isLoading
@@ -50,6 +63,7 @@ class _HomePageState extends State<HomePage> {
                         });
                         await stockProvider.makeGetRequest(
                             _stockController.text, context);
+                        FocusScope.of(context).unfocus();
                         setState(() {
                           _isLoading = false;
                         });

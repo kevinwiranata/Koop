@@ -31,15 +31,17 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          primaryColor: Colors.white,
+          accentColor: Colors.blueGrey,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: Consumer<TabProvider>(
             builder: (_, tabState, child) => screens[tabState.currentIndex]),
-        // routes: {  //routes are not used as of now, just incase we need them
-        //   SearchPage.routeName: (ctx) => SearchPage(),
-        //   FinancePage.routeName: (ctx) => FinancePage(),
-        //   ProfilePage.routeName: (ctx) => ProfilePage(),
-        // },
+        routes: {  
+          SearchPage.routeName: (ctx) => SearchPage(),
+          FinancePage.routeName: (ctx) => FinancePage(),
+          ProfilePage.routeName: (ctx) => ProfilePage(),
+        },
       ),
     );
   }
