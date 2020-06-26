@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
-import '../widgets/Drawer.dart';
 import '../widgets/TabBar.dart' as TabBars;
 import '../widgets/FabMenu.dart';
+//import '../widgets/Drawer.dart';
 
 class ProfilePage extends StatelessWidget {
   static const routeName = '/profile';

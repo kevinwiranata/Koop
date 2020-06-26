@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:io' show Platform;
-import '../widgets/Drawer.dart';
 import '../widgets/TabBar.dart' as TabBars;
 import '../widgets/FabMenu.dart';
+//import '../widgets/Drawer.dart';
 
 
 class SearchPage extends StatelessWidget {

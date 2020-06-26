@@ -1,4 +1,4 @@
-package com.example.Atlas
+package com.example.Koop
 
 import io.flutter.embedding.android.FlutterActivity
 
