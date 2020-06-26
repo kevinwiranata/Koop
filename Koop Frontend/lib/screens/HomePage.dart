@@ -21,13 +21,13 @@ class HomePage extends StatelessWidget {
           centerTitle: true,
           elevation: 2.0,
           iconTheme: IconThemeData(color: Theme.of(context).accentColor),
-          title: Platform.isAndroid ? Text(
+          title: Text(
             'Koop',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w700,
             ),
-          ) : null ,
+          ),
           backgroundColor: Theme.of(context).primaryColor),
       bottomNavigationBar: Platform.isIOS ? TabBars.TabBar() : null,
       body: Stack(

@@ -3,13 +3,9 @@ import 'package:fab_circular_menu/fab_circular_menu.dart';
 import '../screens/SearchPage.dart';
 import '../screens/FinancePage.dart';
 import '../screens/ProfilePage.dart';
-import '../screens/HomePage.dart';
 
 class FabMenu extends StatelessWidget {
-  const FabMenu({
-    Key key,
-  }) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return FabCircularMenu(
