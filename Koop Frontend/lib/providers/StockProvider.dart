@@ -30,15 +30,15 @@ class StockProvider with ChangeNotifier {
       return 'localhost:3000';
   }
 
-  Future<void> makeGetRequest(String stockTicker, BuildContext context) async {
+  Future<void> getDefaultStockGraph(String stockTicker) async {
     final queryParameters = {
       "ticker": stockTicker,
     };
     try {
       Response response = await get(
-        Uri.http(_localhost(), '/', queryParameters),
+        Uri.http(_localhost(), '/stocks', queryParameters),
       );
-      _createStockData(jsonDecode(response.body), stockTicker, context);
+      _createStockData(jsonDecode(response.body), stockTicker);
     } catch (error) {
       print(error);
       return;
@@ -46,7 +46,7 @@ class StockProvider with ChangeNotifier {
   }
 
   void _createStockData(
-      Map<String, dynamic> data, String stockTicker, BuildContext context) {
+      Map<String, dynamic> data, String stockTicker) {
     // use temporary variable so we don't call setState every iteration of loop
     List<StockSeries> tempChartData = [];
 

@@ -8,8 +8,6 @@ import '../widgets/FabMenu.dart';
 
 class SearchPage extends StatelessWidget {
   static const routeName = '/search';
-  static const androidIcon = Icon(Icons.search);
-  static const iosIcon = Icon(CupertinoIcons.search);
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/StockProvider.dart';
+import '../screens/StockDetailScreen.dart';
 import './StockChart.dart';
 
 class StockList extends StatelessWidget {
@@ -11,7 +12,10 @@ class StockList extends StatelessWidget {
     return ListView.builder(
       itemCount: stockProvider.stockData.length,
       itemBuilder: (_, index) => InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(context, StockDetailScreen.routeName,
+              arguments: stockProvider.stockData[index].keys.toList()[0]); // sending the stock ticker as an argument 
+        },
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

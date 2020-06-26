@@ -9,9 +9,7 @@ import '../widgets/FabMenu.dart';
 
 class FinancePage extends StatelessWidget {
   static const routeName = '/finance';
-  static const androidIcon = Icon(Icons.attach_money);
-  static const iosIcon = Icon(CupertinoIcons.folder);
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

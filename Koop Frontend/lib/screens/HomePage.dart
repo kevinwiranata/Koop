@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           backgroundColor: Theme.of(context).primaryColor),
-      bottomNavigationBar: TabBars.TabBar(),
+      bottomNavigationBar: Platform.isIOS ? TabBars.TabBar() : null,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -61,8 +61,8 @@ class _HomePageState extends State<HomePage> {
                         setState(() {
                           _isLoading = true;
                         });
-                        await stockProvider.makeGetRequest(
-                            _stockController.text, context);
+                        await stockProvider
+                            .getDefaultStockGraph(_stockController.text);
                         FocusScope.of(context).unfocus();
                         setState(() {
                           _isLoading = false;

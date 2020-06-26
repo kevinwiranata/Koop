@@ -7,6 +7,7 @@ import './screens/HomePage.dart';
 import './screens/ProfilePage.dart';
 import './screens/SearchPage.dart';
 import './screens/FinancePage.dart';
+import './screens/StockDetailScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,10 +38,11 @@ class MyApp extends StatelessWidget {
         ),
         home: Consumer<TabProvider>(
             builder: (_, tabState, child) => screens[tabState.currentIndex]),
-        routes: {  
+        routes: {
           SearchPage.routeName: (ctx) => SearchPage(),
           FinancePage.routeName: (ctx) => FinancePage(),
           ProfilePage.routeName: (ctx) => ProfilePage(),
+          StockDetailScreen.routeName: (ctx) => StockDetailScreen(),
         },
       ),
     );
