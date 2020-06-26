@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           backgroundColor: Theme.of(context).primaryColor),
-      bottomNavigationBar: TabBars.TabBar(),
+      bottomNavigationBar: Platform.isIOS ? TabBars.TabBar() : null,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
