@@ -14,7 +14,8 @@ class StockList extends StatelessWidget {
       itemBuilder: (_, index) => InkWell(
         onTap: () {
           Navigator.pushNamed(context, StockDetailScreen.routeName,
-              arguments: stockProvider.stockData[index].keys.toList()[0]); // sending the stock ticker as an argument 
+              arguments: stockProvider.stockData[index].keys
+                  .toList()[0]); // sending the stock ticker as an argument
         },
         child: Card(
           shape:
@@ -31,8 +32,10 @@ class StockList extends StatelessWidget {
                 ),
                 Container(
                   child: StockChart(
-                    stockProvider.stockData[index].values
-                        .toList()[0], // Stock Chart
+                    stockProvider.stockData[index].values.toList()[0],
+                    isBull: stockProvider.isBullStock(
+                        stockProvider.stockData[index].keys.toList()[0]),
+                    renderSpec: false, // Stock Chart
                     animate: true,
                   ),
                   height: 100,

@@ -33,6 +33,13 @@ import '../models/StockInfoModel.dart';
 class StockDetailProvider with ChangeNotifier {
   List<Map<String, StockInfo>> stockDetailData = [];
 
+  StockInfo findStockDetail(String stockTicker) {
+    return stockDetailData
+        .singleWhere((stock) => stock.containsKey(stockTicker))
+        .values
+        .toList()[0];
+  }
+
   String _localhost() {
     if (Platform.isAndroid)
       return '10.0.2.2:3000';
@@ -40,7 +47,7 @@ class StockDetailProvider with ChangeNotifier {
       return 'localhost:3000';
   }
 
-  Future<void> getStockDetails(String stockTicker) async {
+  Future<void> fetchAPIStockDetails(String stockTicker) async {
     final queryParameters = {
       "ticker": stockTicker,
     };

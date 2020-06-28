@@ -23,6 +23,25 @@ import '../models/StockSeriesModel.dart';
 class StockProvider with ChangeNotifier {
   List<Map<String, List<StockSeries>>> stockData = [];
 
+  List<StockSeries> findStockSeries(String stockTicker) {
+    return stockData
+        .singleWhere((stock) => stock.containsKey(stockTicker))
+        .values
+        .toList()[0];
+  }
+
+  bool isBullStock(String stockTicker) {
+    List<StockSeries> currentStock = stockData
+        .singleWhere((stock) => stock.containsKey(stockTicker))
+        .values
+        .toList()[0];
+
+    if (currentStock.first.price < currentStock.last.price) {
+      return true;
+    }
+    return false;
+  }
+
   String _localhost() {
     if (Platform.isAndroid)
       return '10.0.2.2:3000';
@@ -45,8 +64,7 @@ class StockProvider with ChangeNotifier {
     }
   }
 
-  void _createStockData(
-      Map<String, dynamic> data, String stockTicker) {
+  void _createStockData(Map<String, dynamic> data, String stockTicker) {
     // use temporary variable so we don't call setState every iteration of loop
     List<StockSeries> tempChartData = [];
 

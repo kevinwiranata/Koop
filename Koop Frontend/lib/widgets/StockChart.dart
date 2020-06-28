@@ -8,9 +8,11 @@ import 'dart:math';
 
 class StockChart extends StatelessWidget {
   final List<StockSeries> stockData;
+  final bool renderSpec;
   final bool animate;
+  final bool isBull;
   static double ticker;
-  StockChart(this.stockData, {this.animate});
+  StockChart(this.stockData, {this.renderSpec, this.isBull, this.animate});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,9 @@ class StockChart extends StatelessWidget {
       Series(
         id: 'id',
         data: stockData,
+        fillColorFn: (_, __) => MaterialPalette.transparent,
+        //areaColorFn: (_, __) => MaterialPalette.gray.shade900,
+        colorFn: (_, __) => isBull? MaterialPalette.green.shadeDefault : MaterialPalette.red.shadeDefault ,
         domainFn: (StockSeries series, _) => series.time,
         measureFn: (StockSeries series, _) => series.price,
       ),
@@ -25,17 +30,21 @@ class StockChart extends StatelessWidget {
     return TimeSeriesChart(
       series,
       animate: true,
-      dateTimeFactory: const LocalDateTimeFactory(),
-      domainAxis: DateTimeAxisSpec(
-        tickFormatterSpec: new AutoDateTimeTickFormatterSpec(
-          day: TimeFormatterSpec(
-            format: 'd',
-            transitionFormat: 'MM/dd/yyyy',
-          ),
-        ),
-        showAxisLine: true,
-      ),
-      primaryMeasureAxis: AxisSpec(
+      domainAxis: renderSpec
+          ? DateTimeAxisSpec(
+              tickFormatterSpec: new AutoDateTimeTickFormatterSpec(
+                day: TimeFormatterSpec(
+                  format: 'd',
+                  transitionFormat: 'MM/dd/yyyy',
+                ),
+              ),
+              showAxisLine: true,
+            )
+          : EndPointsTimeAxisSpec(
+              tickProviderSpec: DayTickProviderSpec(increments: [1000]),
+              showAxisLine: false),
+      primaryMeasureAxis: NumericAxisSpec(
+        renderSpec: renderSpec ? null : NoneRenderSpec(),
         tickProviderSpec: BasicNumericTickProviderSpec(
           zeroBound: false,
         ),

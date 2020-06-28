@@ -19,14 +19,14 @@ class StockInfo {
     this.volume,
     this.peRatio,
   }) {
-    if (open == null) open = "-";
-    if (close == null) close = "-";
-    if (high == null) high = "-";
-    if (low == null) low = "-";
-    if (adjustedClose == null) adjustedClose = "-";
-    if (volume == null) volume = "-";
-    if (dividendAmount == null) dividendAmount = "-";
-    if (eps == null) eps = "-";
-    if (peRatio== null) peRatio = "-";
+    if (open == 'null') open = "-";
+    if (close == 'null') close = "-";
+    if (high == 'null') high = "-";
+    if (low == 'null') low = "-";
+    if (adjustedClose == 'null') adjustedClose = "-";
+    if (volume == 'null') volume = "-";
+    if (dividendAmount == 'null') dividendAmount = "-";
+    if (eps == 'null') eps = "-";
+    if (peRatio== 'null') peRatio = "-";
   }
 }
