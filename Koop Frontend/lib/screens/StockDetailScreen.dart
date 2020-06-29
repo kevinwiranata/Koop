@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'dart:io' show Platform;
 import '../providers/StockProvider.dart';
 import '../providers/StockDetailProvider.dart';
 import '../widgets/StockChart.dart';
 import '../widgets/StockCard.dart';
+import '../widgets/Carousel.dart';
 import '../widgets/FabMenu.dart';
 import '../widgets/TabBar.dart' as TabBars;
 
@@ -41,117 +41,88 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
     final stockTicker = ModalRoute.of(context).settings.arguments as String;
     final stockDetailProvider = Provider.of<StockDetailProvider>(context);
     return Scaffold(
+      appBar: Platform.isIOS
+          ? CupertinoNavigationBar(
+              // middle: Text(
+              //   stockTicker,
+              //   style: TextStyle(fontSize: 20),
+              // ),
+              )
+          : AppBar(
+              // title: Text(
+              //   stockTicker,
+              //   style: TextStyle(fontSize: 20),
+              // ),
+              ),
       floatingActionButton: Platform.isAndroid ? FabMenu() : null,
       bottomNavigationBar: Platform.isIOS ? TabBars.TabBar() : null,
       //drawer: Platform.isAndroid ? AndroidDrawer() : null,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            CarouselSlider.builder(
-              itemCount: stockProvider.stockData.length,
-              itemBuilder: (context, index) => Container(
-                child: Row(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SingleChildScrollView(
+            padding: EdgeInsets.only(top: 10),
+            child: Column(
+              children: <Widget>[
+                StockCarousel(),
+                SizedBox(height: 10),
+                Text(
+                  stockTicker,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(stockProvider.stockData[index].keys.toList()[0]),
-                        Text(
-                          stockProvider
-                              .findStockSeries(stockProvider
-                                  .stockData[index].keys
-                                  .toList()[0])
-                              .last
-                              .price
-                              .toString(),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(2.3),
-                            child: SizedBox(
-                              child: Text(
-                                stockProvider.priceDifferent(stockProvider
-                                    .stockData[index].keys
-                                    .toList()[0], ),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color:  Colors.white),
-                              ),
-                              height: 16,
-                              width: 50,
-                            ),
-                          ),
-                          elevation: 0,
-                          color: stockProvider.isBullStock(stockProvider
-                                  .stockData[index].keys
-                                  .toList()[0])
-                              ? Colors.green
-                              : Colors.red,
-                        ),
-                      ],
+                    Text(
+                      stockProvider
+                          .findStockSeries(stockTicker)
+                          .first
+                          .price
+                          .toString(),
+                      style: TextStyle(fontSize: 20, color: Colors.grey[700]),
                     ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: StockChart(
-                        stockProvider.stockData[index].values.toList()[0],
-                        renderSpec: false,
-                        isBull: stockProvider.isBullStock(
-                            stockProvider.stockData[index].keys.toList()[0]),
-                        animate: true,
+                    // Text(' | '),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      stockProvider.priceDifferent(
+                        stockTicker,
                       ),
-                      width: MediaQuery.of(context).size.width * 1 / 4.6,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: stockProvider.isBullStock(stockTicker)
+                              ? Colors.green[600]
+                              : Colors.red,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16),
                     ),
                   ],
                 ),
-              ),
-              options: CarouselOptions(
-                viewportFraction: 0.4,
-                height: 70,
-                autoPlay: true,
-                autoPlayInterval: Duration(milliseconds: 100),
-                autoPlayAnimationDuration: Duration(seconds: 4),
-                autoPlayCurve: Curves.linear,
-                scrollDirection: Axis.horizontal,
-              ),
-            ),
-            SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      stockTicker,
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
+                Container(
+                  child: StockChart(
+                    stockProvider.findStockSeries(stockTicker),
+                    renderSpec: true,
+                    isBull: stockProvider.isBullStock(stockTicker),
+                    animate: true,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: 20, top: 20),
-                    child: StockChart(
-                      stockProvider.findStockSeries(stockTicker),
-                      renderSpec: true,
-                      isBull: stockProvider.isBullStock(stockTicker),
-                      animate: true,
-                    ),
-                    height: 300,
-                    width: 320,
-                  ),
-                  _isLoading
-                      ? CircularProgressIndicator()
-                      : Container(
-                          margin: EdgeInsets.all(20),
-                          child: StockCard(
-                            data: stockDetailProvider
-                                .findStockDetail(stockTicker),
-                          ),
+                  height: 300,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                ),
+                _isLoading
+                    ? CircularProgressIndicator()
+                    : Container(
+                        margin: EdgeInsets.all(20),
+                        child: StockCard(
+                          data:
+                              stockDetailProvider.findStockDetail(stockTicker),
                         ),
-                ],
-              ),
+                      ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

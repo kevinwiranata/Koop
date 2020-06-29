@@ -26,6 +26,7 @@ class StockChart extends StatelessWidget {
             : MaterialPalette.red.shadeDefault,
         domainFn: (StockSeries series, _) => series.time,
         measureFn: (StockSeries series, _) => series.price,
+        strokeWidthPxFn: (StockSeries series, _) => 1.6,
       ),
     ];
     return TimeSeriesChart(
@@ -45,9 +46,10 @@ class StockChart extends StatelessWidget {
               tickProviderSpec: DayTickProviderSpec(increments: [1000]),
               showAxisLine: false),
       primaryMeasureAxis: NumericAxisSpec(
-        renderSpec: renderSpec ? null : NoneRenderSpec(),
+        renderSpec:  NoneRenderSpec(),
         tickProviderSpec: BasicNumericTickProviderSpec(
           zeroBound: false,
+          desiredTickCount: 3,
         ),
       ),
       behaviors: [

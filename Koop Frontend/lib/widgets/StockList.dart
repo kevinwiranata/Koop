@@ -23,8 +23,9 @@ class StockList extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(2),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
+                SizedBox(),
                 Column(
                   children: <Widget>[
                     Text(
@@ -32,13 +33,16 @@ class StockList extends StatelessWidget {
                           .toList()[0], // Stock Ticker
                       style: TextStyle(fontSize: 20),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       children: <Widget>[
                         Text(
                           stockProvider
-                              .findStockSeries(
-                                  stockProvider.stockData[index].keys.toList()[0])
+                              .findStockSeries(stockProvider
+                                  .stockData[index].keys
+                                  .toList()[0])
                               .last
                               .price
                               .toString(),
@@ -57,6 +61,27 @@ class StockList extends StatelessWidget {
                   ),
                   height: 100,
                   width: 200,
+                ),
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.3),
+                    child: SizedBox(
+                      child: Text(
+                        stockProvider.percentageChange(
+                          stockProvider.stockData[index].keys.toList()[0],
+                        ),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      height: 16,
+                      width: 60,
+                    ),
+                  ),
+                  elevation: 0,
+                  color: stockProvider.isBullStock(
+                          stockProvider.stockData[index].keys.toList()[0])
+                      ? Colors.green
+                      : Colors.red,
                 ),
               ],
             ),

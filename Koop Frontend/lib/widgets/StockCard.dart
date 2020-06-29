@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import '../models/StockInfoModel.dart';
 
 class StockCard extends StatelessWidget {
@@ -9,6 +10,7 @@ class StockCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var f = NumberFormat.compact();
     return Container(
       height: 100,
       child: ListView(
@@ -35,7 +37,8 @@ class StockCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Vol:                ' + data.volume),
+                  Text('Vol:                ' +
+                      f.format(double.parse(data.volume))),
                   Padding(padding: EdgeInsets.symmetric(vertical: 3)),
                   Text('Close:            ' + data.close),
                   Padding(padding: EdgeInsets.symmetric(vertical: 3)),

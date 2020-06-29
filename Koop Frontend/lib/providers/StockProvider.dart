@@ -36,22 +36,39 @@ class StockProvider with ChangeNotifier {
         .values
         .toList()[0];
 
-    if (currentStock.first.price < currentStock.last.price) {
+    if (currentStock.last.price < currentStock.first.price) {
       return true;
     }
     return false;
   }
 
   String priceDifferent(String stockTicker) {
-        List<StockSeries> currentStock = stockData
+    List<StockSeries> currentStock = stockData
         .singleWhere((stock) => stock.containsKey(stockTicker))
         .values
         .toList()[0];
 
-    if (currentStock.first.price < currentStock.last.price) {
-      return ('+' + (currentStock.last.price - currentStock.first.price).toString());
+    if (currentStock.last.price < currentStock.first.price) {
+      return ('+' +
+          (currentStock.first.price - currentStock.last.price)
+              .toStringAsFixed(2));
     }
-    return ((currentStock.last.price - currentStock.first.price).toString());
+    return ((currentStock.first.price - currentStock.last.price)
+        .toStringAsFixed(2));
+  }
+
+  String percentageChange(String stockTicker) {
+    List<StockSeries> currentStock = stockData
+        .singleWhere((stock) => stock.containsKey(stockTicker))
+        .values
+        .toList()[0];
+    if (currentStock.last.price < currentStock.first.price) {
+      return ('+' +
+          ((currentStock.first.price - currentStock.last.price) / currentStock.last.price)
+              .toStringAsFixed(2) + '%');
+    }
+    return (((currentStock.first.price - currentStock.last.price) / currentStock.last.price)
+        .toStringAsFixed(2) + '%');
   }
 
   String _localhost() {
