@@ -41,11 +41,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
     final stockTicker = ModalRoute.of(context).settings.arguments as String;
     final stockDetailProvider = Provider.of<StockDetailProvider>(context);
     return Scaffold(
-      appBar: Platform.isIOS
-          ? CupertinoNavigationBar(
-              )
-          : AppBar(
-              ),
+      appBar: Platform.isIOS ? CupertinoNavigationBar() : AppBar(),
       floatingActionButton: Platform.isAndroid ? FabMenu() : null,
       bottomNavigationBar: Platform.isIOS ? TabBars.TabBar() : null,
       //drawer: Platform.isAndroid ? AndroidDrawer() : null,
