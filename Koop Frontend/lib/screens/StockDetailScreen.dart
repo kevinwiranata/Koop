@@ -66,9 +66,32 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                               .price
                               .toString(),
                         ),
+                        Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(2.3),
+                            child: SizedBox(
+                              child: Text(
+                                stockProvider.priceDifferent(stockProvider
+                                    .stockData[index].keys
+                                    .toList()[0], ),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color:  Colors.white),
+                              ),
+                              height: 16,
+                              width: 50,
+                            ),
+                          ),
+                          elevation: 0,
+                          color: stockProvider.isBullStock(stockProvider
+                                  .stockData[index].keys
+                                  .toList()[0])
+                              ? Colors.green
+                              : Colors.red,
+                        ),
                       ],
                     ),
                     Container(
+                      alignment: Alignment.centerLeft,
                       child: StockChart(
                         stockProvider.stockData[index].values.toList()[0],
                         renderSpec: false,
@@ -76,17 +99,17 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                             stockProvider.stockData[index].keys.toList()[0]),
                         animate: true,
                       ),
-                      width: MediaQuery.of(context).size.width * 1 / 4.8,
+                      width: MediaQuery.of(context).size.width * 1 / 4.6,
                     ),
                   ],
                 ),
               ),
               options: CarouselOptions(
-                height: 50,
-                viewportFraction: 0.35,
+                viewportFraction: 0.4,
+                height: 70,
                 autoPlay: true,
                 autoPlayInterval: Duration(milliseconds: 100),
-                autoPlayAnimationDuration: Duration(seconds: 7),
+                autoPlayAnimationDuration: Duration(seconds: 4),
                 autoPlayCurve: Curves.linear,
                 scrollDirection: Axis.horizontal,
               ),

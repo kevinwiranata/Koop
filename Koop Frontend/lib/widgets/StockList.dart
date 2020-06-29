@@ -25,10 +25,27 @@ class StockList extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Text(
-                  stockProvider.stockData[index].keys
-                      .toList()[0], // Stock Ticker
-                  style: TextStyle(fontSize: 18),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      stockProvider.stockData[index].keys
+                          .toList()[0], // Stock Ticker
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    SizedBox(height: 10,),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          stockProvider
+                              .findStockSeries(
+                                  stockProvider.stockData[index].keys.toList()[0])
+                              .last
+                              .price
+                              .toString(),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
                 Container(
                   child: StockChart(

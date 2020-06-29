@@ -42,6 +42,18 @@ class StockProvider with ChangeNotifier {
     return false;
   }
 
+  String priceDifferent(String stockTicker) {
+        List<StockSeries> currentStock = stockData
+        .singleWhere((stock) => stock.containsKey(stockTicker))
+        .values
+        .toList()[0];
+
+    if (currentStock.first.price < currentStock.last.price) {
+      return ('+' + (currentStock.last.price - currentStock.first.price).toString());
+    }
+    return ((currentStock.last.price - currentStock.first.price).toString());
+  }
+
   String _localhost() {
     if (Platform.isAndroid)
       return '10.0.2.2:3000';

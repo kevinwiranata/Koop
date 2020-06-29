@@ -20,9 +20,10 @@ class StockChart extends StatelessWidget {
       Series(
         id: 'id',
         data: stockData,
-        fillColorFn: (_, __) => MaterialPalette.transparent,
-        //areaColorFn: (_, __) => MaterialPalette.gray.shade900,
-        colorFn: (_, __) => isBull? MaterialPalette.green.shadeDefault : MaterialPalette.red.shadeDefault ,
+        areaColorFn: (_, __) => MaterialPalette.green.shadeDefault ,
+        colorFn: (_, __) => isBull
+            ? MaterialPalette.green.shadeDefault
+            : MaterialPalette.red.shadeDefault,
         domainFn: (StockSeries series, _) => series.time,
         measureFn: (StockSeries series, _) => series.price,
       ),
