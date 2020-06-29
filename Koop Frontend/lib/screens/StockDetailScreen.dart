@@ -43,16 +43,8 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
     return Scaffold(
       appBar: Platform.isIOS
           ? CupertinoNavigationBar(
-              // middle: Text(
-              //   stockTicker,
-              //   style: TextStyle(fontSize: 20),
-              // ),
               )
           : AppBar(
-              // title: Text(
-              //   stockTicker,
-              //   style: TextStyle(fontSize: 20),
-              // ),
               ),
       floatingActionButton: Platform.isAndroid ? FabMenu() : null,
       bottomNavigationBar: Platform.isIOS ? TabBars.TabBar() : null,
