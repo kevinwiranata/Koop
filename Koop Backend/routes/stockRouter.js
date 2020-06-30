@@ -50,18 +50,18 @@ stockRouter
 stockRouter.route("/details").get((req, res, next) => {
   const body = JSON.parse(JSON.stringify(req.query));
   const { ticker } = body;
-  parsedResponse = {5: 2};
+  parsedResponse = { 5: 2 };
 
-  var datetimeToday = new Date();
-  var dateTimeYesterday = datetimeToday.setDate(datetimeToday.getDate() - 1);
-  // getting stock details for stock details screen
+  var currentDate = new Date().toISOString().slice(0, 10);
+  var yesterdayDate = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+
   axios
     .get(
-      `http://api.marketstack.com/v1/eod?access_key=${process.env.MARKET_STACK_API_KEY}&symbols=${ticker}&date_from=2020-06-25&date_to=2020-06-26`
+      `http://api.marketstack.com/v1/eod?access_key=${process.env.MARKET_STACK_API_KEY}&symbols=${ticker}&date_from=${yesterdayDate}&date_to=${currentDate}`
     )
     .then((response) => {
       const apiResponse = response.data;
-			parsedResponse = apiResponse['data'][0];
+      parsedResponse = apiResponse["data"][0];
 
       //error handling
       if (Object.entries(parsedResponse).length == 0) {
