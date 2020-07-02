@@ -13,6 +13,10 @@ git clone https://github.com/kevinwiranata/Koop
 cd Koop
 ```
 
+*Important*
+Note: Make sure to add your MarketStack API Key in your root level .env file
+MARKET_STACK_API_KEY=YOUR_ACCESS_KEY_HERE
+
 ### Run the App on iOS/Android Emulator
 Open Xcode / Android Studio and configure settings according to:
 
@@ -26,7 +30,7 @@ In the Koop directory (flutter), click Run -> Run Without Debugging in VSCode (o
 
 Use the terminal to change directory to the Backend directory, install node depencdencies and start the server.
 ```
-cd Backend
+cd Koop Backend
 npm install
 npm start
 ```

@@ -61,8 +61,8 @@ class _HomePageState extends State<HomePage> {
                         setState(() {
                           _isLoading = true;
                         });
-                        await stockProvider.makeGetRequest(
-                            _stockController.text, context);
+                        await stockProvider
+                            .getDefaultStockGraph(_stockController.text);
                         FocusScope.of(context).unfocus();
                         setState(() {
                           _isLoading = false;
@@ -81,4 +81,5 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
 }

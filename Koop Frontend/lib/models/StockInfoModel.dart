@@ -8,6 +8,7 @@ class StockInfo {
   String dividendAmount;
   String eps;
   String peRatio;
+  String marketCap;
   StockInfo({
     this.open,
     this.close,
@@ -18,15 +19,17 @@ class StockInfo {
     this.eps,
     this.volume,
     this.peRatio,
+    this.marketCap
   }) {
-    if (open == null) open = "-";
-    if (close == null) close = "-";
-    if (high == null) high = "-";
-    if (low == null) low = "-";
-    if (adjustedClose == null) adjustedClose = "-";
-    if (volume == null) volume = "-";
-    if (dividendAmount == null) dividendAmount = "-";
-    if (eps == null) eps = "-";
-    if (peRatio== null) peRatio = "-";
+    if (open == 'null') open = "-";
+    if (close == 'null') close = "-";
+    if (high == 'null') high = "-";
+    if (low == 'null') low = "-";
+    if (adjustedClose == 'null') adjustedClose = "-";
+    if (volume == 'null') volume = "-";
+    if (dividendAmount == 'null') dividendAmount = "-";
+    if (eps == 'null') eps = "-";
+    if (peRatio== 'null') peRatio = "-";
+    if (marketCap=='null') marketCap = "-";
   }
 }
