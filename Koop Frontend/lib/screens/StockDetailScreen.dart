@@ -21,6 +21,8 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
   bool _isLoading = true;
   bool _isInit = true;
 
+  //Here, we call didChangeDependencies to fetch the stock detail data before widget build() function runs
+  //We do this so that there will be data when the stock card widget builds (or else it'll be null and error)
   @override
   void didChangeDependencies() async {
     if (_isInit) {
@@ -45,72 +47,68 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
       floatingActionButton: Platform.isAndroid ? FabMenu() : null,
       bottomNavigationBar: Platform.isIOS ? TabBars.TabBar() : null,
       //drawer: Platform.isAndroid ? AndroidDrawer() : null,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SingleChildScrollView(
-            padding: EdgeInsets.only(top: 10),
-            child: Column(
+
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(top: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            StockCarousel(),
+            SizedBox(height: 10),
+            Text(
+              stockTicker,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                StockCarousel(),
-                SizedBox(height: 10),
                 Text(
-                  stockTicker,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  stockProvider
+                      .findStockSeries(stockTicker)
+                      .first
+                      .price
+                      .toString(),
+                  style: TextStyle(fontSize: 20, color: Colors.grey[700]),
                 ),
-                SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      stockProvider
-                          .findStockSeries(stockTicker)
-                          .first
-                          .price
-                          .toString(),
-                      style: TextStyle(fontSize: 20, color: Colors.grey[700]),
-                    ),
-                    // Text(' | '),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      stockProvider.priceDifferent(
-                        stockTicker,
-                      ),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: stockProvider.isBullStock(stockTicker)
-                              ? Colors.green[600]
-                              : Colors.red,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16),
-                    ),
-                  ],
+                // Text(' | '),
+                SizedBox(
+                  width: 10,
                 ),
-                Container(
-                  child: StockChart(
-                    stockProvider.findStockSeries(stockTicker),
-                    renderSpec: true,
-                    isBull: stockProvider.isBullStock(stockTicker),
-                    animate: true,
+                Text(
+                  stockProvider.priceDifferent(
+                    stockTicker,
                   ),
-                  height: 300,
-                  width: MediaQuery.of(context).size.width * 0.8,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: stockProvider.isBullStock(stockTicker)
+                          ? Colors.green[600]
+                          : Colors.red,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16),
                 ),
-                _isLoading
-                    ? CircularProgressIndicator()
-                    : Container(
-                        margin: EdgeInsets.all(20),
-                        child: StockCard(
-                          data:
-                              stockDetailProvider.findStockDetail(stockTicker),
-                        ),
-                      ),
               ],
             ),
-          ),
-        ],
+            Container(
+              child: StockChart(
+                stockProvider.findStockSeries(stockTicker),
+                renderSpec: true,
+                isBull: stockProvider.isBullStock(stockTicker),
+                animate: true,
+              ),
+              height: 300,
+              width: MediaQuery.of(context).size.width * 0.8,
+            ),
+            _isLoading
+                ? CircularProgressIndicator()
+                : Container(
+                    margin: EdgeInsets.all(20),
+                    child: StockCard(
+                      data: stockDetailProvider.findStockDetail(stockTicker),
+                    ),
+                  ),
+          ],
+        ),
       ),
     );
   }

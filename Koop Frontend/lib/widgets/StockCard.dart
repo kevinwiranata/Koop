@@ -8,11 +8,22 @@ class StockCard extends StatelessWidget {
 
   StockCard({this.data});
 
+  Widget singleDetail(String title, String data) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(title, style: TextStyle(fontSize: 14)),
+        Text(data, style: TextStyle(fontSize: 20)),
+        Padding(padding: EdgeInsets.symmetric(vertical: 4)),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var f = NumberFormat.compact();
     return Container(
-      height: 100,
+      height: 300,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
@@ -21,44 +32,22 @@ class StockCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Open:       ' + data.open),
-                  Padding(padding: EdgeInsets.symmetric(vertical: 3)),
-                  Text('High:        ' + data.high),
-                  Padding(padding: EdgeInsets.symmetric(vertical: 3)),
-                  Text('Low:         ' + data.low),
+                  singleDetail('Open', data.open),
+                  singleDetail('Close', data.close),
+                  singleDetail('High', data.high),
+                  singleDetail('Low', data.low),
+                  singleDetail('Dividend', data.dividendAmount),
                 ],
               ),
-              VerticalDivider(
-                color: Colors.black,
-                thickness: 1,
-                endIndent: 35,
-                width: 35,
-              ),
+              SizedBox(width: 120),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Vol:                ' +
-                      f.format(double.parse(data.volume))),
-                  Padding(padding: EdgeInsets.symmetric(vertical: 3)),
-                  Text('Close:            ' + data.close),
-                  Padding(padding: EdgeInsets.symmetric(vertical: 3)),
-                  Text('Adj Close:      ' + data.adjustedClose),
-                ],
-              ),
-              VerticalDivider(
-                color: Colors.black,
-                thickness: 1,
-                endIndent: 35,
-                width: 35,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text('Dividend:     ' + data.dividendAmount),
-                  Padding(padding: EdgeInsets.symmetric(vertical: 3)),
-                  Text('EPS:              ' + data.eps),
-                  Padding(padding: EdgeInsets.symmetric(vertical: 3)),
-                  Text('PE Ratio:       ' + data.peRatio),
+                  singleDetail('Adj Close', data.adjustedClose),
+                  singleDetail('Volume', f.format(double.parse(data.volume))),
+                  singleDetail('EPS', data.eps),
+                  singleDetail('PE Ratio', data.peRatio),
+                  singleDetail('Market Cap', data.marketCap),
                 ],
               ),
             ],

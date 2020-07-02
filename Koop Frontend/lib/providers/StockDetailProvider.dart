@@ -66,6 +66,7 @@ class StockDetailProvider with ChangeNotifier {
         dividendAmount: jsonResponse['dividend'].toString(),
         eps: jsonResponse['eps'].toString(),
         peRatio: jsonResponse['pe'].toString(),
+        marketCap: jsonResponse['marketcap'].toString(),
       );
       if ((stockDetailData
           .where((stock) => stock.containsKey(stockTicker))
