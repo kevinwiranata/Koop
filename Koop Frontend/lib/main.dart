@@ -7,6 +7,7 @@ import './screens/HomePage.dart';
 import './screens/ProfilePage.dart';
 import './screens/SearchPage.dart';
 import './screens/FinancePage.dart';
+import './providers/articleListModel.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => TabProvider()),
         ChangeNotifierProvider(create: (ctx) => StockProvider()),
         ChangeNotifierProvider(create: (ctx) => StockDetailProvider()),
+        ChangeNotifierProvider(create: (ctx) => ArticleListModel()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'dart:io' show Platform;
 import '../widgets/TabBar.dart' as TabBars;
 import '../widgets/FabMenu.dart';
+import '../widgets/articleList.dart';
 //import '../widgets/Drawer.dart';
 
 
@@ -22,7 +23,7 @@ class SearchPage extends StatelessWidget {
       ),
       bottomNavigationBar: Platform.isIOS ? TabBars.TabBar() : null,
 //      drawer: Platform.isAndroid ? AndroidDrawer() : null,
-      body: Container(),
+      body: ArticleList(),
     );
   }
 }
