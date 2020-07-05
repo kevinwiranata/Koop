@@ -4,6 +4,8 @@ import 'dart:io' show Platform;
 import '../widgets/TabBar.dart' as TabBars;
 import '../widgets/FabMenu.dart';
 import '../widgets/articleList.dart';
+import 'package:provider/provider.dart';
+import '../providers/articleListModel.dart';
 //import '../widgets/Drawer.dart';
 
 
@@ -11,6 +13,7 @@ class SearchPage extends StatelessWidget {
   static const routeName = '/search';
   static const androidIcon = Icon(Icons.search);
   static const iosIcon = Icon(CupertinoIcons.search);
+
 
   @override
   Widget build(BuildContext context) {
