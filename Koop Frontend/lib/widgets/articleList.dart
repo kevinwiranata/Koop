@@ -9,7 +9,7 @@ class ArticleList extends StatelessWidget{
   Widget build(BuildContext context){
     var isLoading = Provider.of<ArticleListModel>(context).isLoading;
     final articleListProvider = Provider.of<ArticleListModel>(context);
-    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return isLoading
       ? Center(child: CircularProgressIndicator())
       : ListView.builder(

@@ -26,7 +26,7 @@ class ArticleTile extends StatelessWidget {
       },
       child: Container(
         width: screenWidth,
-        height: screenHeight * 120/812,
+        height: screenHeight * 115/812,
         child: Padding(
           padding: const EdgeInsets.only(left: 15.0, right: 15.0),
           child: Row(
@@ -35,17 +35,17 @@ class ArticleTile extends StatelessWidget {
                 child: Stack(
                   children: <Widget>[
                     Positioned(
-                      bottom: screenWidth * 7 / 365,
+                      bottom: screenWidth * 10 / 365,
                       left: 0,
                       child: TickerTile(),
                     ),
                     Positioned(
-                      bottom: screenWidth * 7 / 365,
+                      bottom: screenWidth * 10 / 365,
                       left: screenWidth * 50 / 375,
                       child: PercentChangeTile(),
                     ),
                     Positioned(
-                      bottom: screenWidth * 10 / 365,
+                      bottom: screenWidth * 11.5 / 365,
                       left: screenWidth * 170 / 375,
                       child: Container(
                         height: screenHeight * 16/812,

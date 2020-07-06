@@ -27,7 +27,7 @@ class MainArticleTile extends StatelessWidget {
         padding: const EdgeInsets.only(left: 15.0, right:15.0, top: 10.0),
         child: Container(
           width : screenWidth,
-          height: screenHeight * 342.5/812,
+          height: screenHeight * 358/812,
           child: Column(
             children: <Widget>[
             ClipRRect(
@@ -42,7 +42,7 @@ class MainArticleTile extends StatelessWidget {
                         width: double.infinity,
                         color: Colors.blueGrey)),
             Padding(
-              padding: const EdgeInsets.only(top: 7.5),
+              padding: EdgeInsets.only(top: screenHeight * 7.5/365),
               child: Text(title, style: TextStyle(
                 fontSize:19.0,
                 color:Colors.black87,
@@ -51,32 +51,33 @@ class MainArticleTile extends StatelessWidget {
               maxLines: 2,
               ),
             ),
-            Container(
-              width: double.infinity,
-              height: screenHeight * 41/812,
-              child: Stack(children: <Widget>[
-                Positioned(
-                  left: 0,
-                  bottom: screenWidth * 5 / 365,
-                  child: TickerTile()
-                ),
-                Positioned(
-                  left: screenWidth * 50/375,
-                  bottom: screenWidth * 5/365,
-                  child: PercentChangeTile() 
-                ),
-                Positioned(
-                  right:0,
-                  bottom: screenWidth * 7.5/365,
-                  child: Text(siteName, style: TextStyle(
-                    color: Color(0xFF6A6A6A),
-                    fontSize: 10.0,
-                    fontWeight: FontWeight.w300
+            Expanded(
+                child: Container(
+                width: double.infinity,
+                child: Stack(children: <Widget>[
+                  Positioned(
+                    left: 0,
+                    bottom: screenWidth * 10 / 365,
+                    child: TickerTile()
                   ),
+                  Positioned(
+                    left: screenWidth * 50/375,
+                    bottom: screenWidth * 10/365,
+                    child: PercentChangeTile() 
+                  ),
+                  Positioned(
+                    right:0,
+                    bottom: screenWidth * 11.5/365,
+                    child: Text(siteName, style: TextStyle(
+                      color: Color(0xFF6A6A6A),
+                      fontSize: 10.0,
+                      fontWeight: FontWeight.w300
+                    ),
 
+                    )
                   )
-                )
-              ],),
+                ],),
+              ),
             )
             
           ],)
