@@ -5,7 +5,6 @@ import '../widgets/TabBar.dart' as TabBars;
 import '../widgets/FabMenu.dart';
 import '../widgets/articleList.dart';
 import 'package:provider/provider.dart';
-import '../providers/articleListModel.dart';
 //import '../widgets/Drawer.dart';
 
 

@@ -7,7 +7,7 @@ import './screens/HomePage.dart';
 import './screens/ProfilePage.dart';
 import './screens/SearchPage.dart';
 import './screens/FinancePage.dart';
-import './providers/articleListModel.dart';
+import './providers/ArticleListProvider.dart';
 import './screens/StockDetailScreen.dart';
 
 void main() {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => TabProvider()),
         ChangeNotifierProvider(create: (ctx) => StockProvider()),
         ChangeNotifierProvider(create: (ctx) => StockDetailProvider()),
-        ChangeNotifierProvider(create: (ctx) => ArticleListModel()),
+        ChangeNotifierProvider(create: (ctx) => ArticleListProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

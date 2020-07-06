@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Koop/providers/articleListModel.dart';
+import 'package:Koop/providers/ArticleListProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:Koop/widgets/articleTile.dart';
 import './MainArticleTile.dart';
@@ -7,8 +7,8 @@ class ArticleList extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    var isLoading = Provider.of<ArticleListModel>(context).isLoading;
-    final articleListProvider = Provider.of<ArticleListModel>(context);
+    var isLoading = Provider.of<ArticleListProvider>(context).isLoading;
+    final articleListProvider = Provider.of<ArticleListProvider>(context);
     final screenWidth = MediaQuery.of(context).size.width;
     return isLoading
       ? Center(child: CircularProgressIndicator())
