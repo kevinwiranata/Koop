@@ -11,8 +11,6 @@ import '../providers/articleListModel.dart';
 
 class SearchPage extends StatelessWidget {
   static const routeName = '/search';
-  static const androidIcon = Icon(Icons.search);
-  static const iosIcon = Icon(CupertinoIcons.search);
 
 
   @override
