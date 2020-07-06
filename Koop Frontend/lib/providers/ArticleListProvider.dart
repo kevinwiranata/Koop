@@ -1,12 +1,10 @@
 import '../models/articleTileModel.dart';
 import '../models/articleModel.dart';
 import 'package:flutter/cupertino.dart';
-import '../models/articleModel.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-
-class ArticleListProvider extends ChangeNotifier{
+class ArticleListProvider extends ChangeNotifier {
   bool isLoading = true;
   List<ArticleTileModel> articles = List<ArticleTileModel>();
 
@@ -14,32 +12,31 @@ class ArticleListProvider extends ChangeNotifier{
     _populateTopHeadlines();
   }
 
-  Future<void> getArticles() async{
+  Future<void> getArticles() async {
     List<ArticleModel> newsArticles = await fetchTopHeadlines();
-    this.articles = newsArticles.map((article)=> ArticleTileModel(article: article)).toList();
+    this.articles = newsArticles
+        .map((article) => ArticleTileModel(article: article))
+        .toList();
     return;
   }
-  
-  void _populateTopHeadlines() async{
+
+  void _populateTopHeadlines() async {
     await getArticles();
     isLoading = false;
     notifyListeners();
   }
 
-  Future<List<ArticleModel>> fetchTopHeadlines() async{  
-    String url = 'http://newsapi.org/v2/top-headlines?country=id&category=business&apiKey=3e7a1721e3ca45c28aad69546f4591a5';
+  Future<List<ArticleModel>> fetchTopHeadlines() async {
+    String url =
+        'http://newsapi.org/v2/top-headlines?country=id&category=business&apiKey=3e7a1721e3ca45c28aad69546f4591a5';
     final response = await http.get(url);
-    
-    if(response.statusCode == 200){
 
+    if (response.statusCode == 200) {
       final result = jsonDecode(response.body);
       Iterable list = result["articles"];
-      return list.map((article)=> ArticleModel.fromJSON(article)).toList();
-
+      return list.map((article) => ArticleModel.fromJSON(article)).toList();
     } else {
       throw Exception("Failed to get Top news");
     }
   }
-
 }
-

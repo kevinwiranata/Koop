@@ -14,7 +14,7 @@ class ArticleList extends StatelessWidget{
       ? Center(child: CircularProgressIndicator())
       : ListView.builder(
       itemCount: articleListProvider.articles.length-1,
-      itemBuilder: (context, index){
+      itemBuilder: (_, index){
         return(
           index == 0 
           ? MainArticleTile(

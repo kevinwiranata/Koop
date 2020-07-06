@@ -1,11 +1,11 @@
 import './articleModel.dart';
 
-class ArticleTileModel{
+class ArticleTileModel {
   ArticleModel _articleModel;
 
-  ArticleTileModel({ArticleModel article}): _articleModel = article;
+  ArticleTileModel({ArticleModel article}) : _articleModel = article;
 
-  String get title{
+  String get title {
     return _articleModel.title;
   }
 
@@ -13,7 +13,7 @@ class ArticleTileModel{
     return _articleModel.description;
   }
 
-  String get urlToImage{
+  String get urlToImage {
     return _articleModel.urlToImage;
   }
 
@@ -28,5 +28,4 @@ class ArticleTileModel{
   String get name {
     return _articleModel.name;
   }
-
 }

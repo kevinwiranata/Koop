@@ -4,13 +4,9 @@ import 'dart:io' show Platform;
 import '../widgets/TabBar.dart' as TabBars;
 import '../widgets/FabMenu.dart';
 import '../widgets/articleList.dart';
-import 'package:provider/provider.dart';
-//import '../widgets/Drawer.dart';
-
 
 class SearchPage extends StatelessWidget {
   static const routeName = '/search';
-
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +15,9 @@ class SearchPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Search Page'),
         backgroundColor: Theme.of(context).primaryColor,
-        elevation:2.0,
+        elevation: 2.0,
       ),
       bottomNavigationBar: Platform.isIOS ? TabBars.TabBar() : null,
-//      drawer: Platform.isAndroid ? AndroidDrawer() : null,
       body: ArticleList(),
     );
   }

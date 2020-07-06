@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../models/articleModel.dart';
 import './ArticleWebView.dart';
 import './TickerTile.dart';
 import './PercentChangeTile.dart';
@@ -26,7 +25,7 @@ class ArticleTile extends StatelessWidget {
       },
       child: Container(
         width: screenWidth,
-        height: screenHeight * 115/812,
+        height: screenHeight * 115 / 812,
         child: Padding(
           padding: const EdgeInsets.only(left: 15.0, right: 15.0),
           child: Row(
@@ -48,30 +47,34 @@ class ArticleTile extends StatelessWidget {
                       bottom: screenWidth * 11.5 / 365,
                       left: screenWidth * 170 / 375,
                       child: Container(
-                        height: screenHeight * 16/812,
-                        width: screenWidth * 85/375,
-                        child: Text(siteName,
-                            overflow: TextOverflow.fade,
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: Color(0xFF6A6A6A),
-                              fontSize: 10.0,
-                            )),
+                        height: screenHeight * 16 / 812,
+                        width: screenWidth * 85 / 375,
+                        child: Text(
+                          siteName,
+                          overflow: TextOverflow.fade,
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            color: Color(0xFF6A6A6A),
+                            fontSize: 10.0,
+                          ),
+                        ),
                       ),
                     ),
-                    Column(children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(title,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black87,
-                                fontSize: 16.0)),
-                      ),
-                    ]),
+                    Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: Text(title,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black87,
+                                  fontSize: 16.0)),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -93,6 +96,3 @@ class ArticleTile extends StatelessWidget {
     );
   }
 }
-
-
-

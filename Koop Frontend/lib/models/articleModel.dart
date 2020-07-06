@@ -1,6 +1,4 @@
-
-
-class ArticleModel{
+class ArticleModel {
   final String title;
   final String description;
   final String url;
@@ -8,9 +6,15 @@ class ArticleModel{
   final String content;
   final String name;
 
-  ArticleModel({this.title, this.description, this.url, this.urlToImage, this.content, this.name});
+  ArticleModel(
+      {this.title,
+      this.description,
+      this.url,
+      this.urlToImage,
+      this.content,
+      this.name});
 
-  factory ArticleModel.fromJSON(Map<String, dynamic> json){
+  factory ArticleModel.fromJSON(Map<String, dynamic> json) {
     return ArticleModel(
       title: json["title"],
       description: json["description"],
@@ -20,5 +24,4 @@ class ArticleModel{
       name: json['source']['name'],
     );
   }
-
 }
