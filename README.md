@@ -6,6 +6,9 @@ For more information: https://pub.dev/packages/provider
 
 https://medium.com/flutter-community/flutter-statemanagement-with-provider-ee251bbc5ac1
 
+## Demo
+![IOS Demo](demo/ios.gif)
+
 ## Getting Started
 Clone the project 
 ```
